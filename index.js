@@ -195,3 +195,14 @@ let bucketArr = [54, 25, 11, 2, 6, 8, 1, 50, 64, 32, 32, 32, 100];
 console.log(bucketSort(bucketArr, 1, 100));
 
 console.log(shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]));
+
+// sorting books
+// We can do this with any of the sorting algorithms
+// in fact it works without modification since JavaScript allows lexigraphic comparison, e.g.
+
+let books = [
+  'Lord of the Rings', 'Harry Potter', 'Wasteland', 'Random Nonsense', 'Xylophones', 'Other Stuff', 'Zzzzzz', 'Aaaaa'
+];
+
+console.log(mSort(books));
+

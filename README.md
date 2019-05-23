@@ -39,3 +39,7 @@ after first partition with last item
 
 after first partition with first item:
 
+12, 13, 10, 3, 9 , 14, 15, 16, 19, 17
+
+
+

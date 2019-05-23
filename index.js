@@ -106,6 +106,32 @@ function mergeList(left, right) {
   return newList;
 }
 
+function bucketSort(array, lowest, highest) {
+  const bigArray = new Array(highest - lowest + 1);
+  for (let i = 0; i < array.length; i++) {
+    const val = array[i];
+    if (!bigArray[val]) {
+      bigArray[val] = {
+        value: val,
+        count: 1
+      };
+    } else {
+      bigArray[val].count += 1;
+    }
+  }
+  let smallIndex = 0;
+  for (let i = 0; i < bigArray.length; i++) {
+    if (bigArray[i]) {
+      while (bigArray[i].count > 0) {
+        array[smallIndex] = i;
+        bigArray[i].count -= 1;
+        smallIndex++;
+      }
+    }
+  }
+  return array;
+}
+
 function mSort(array) {
   if (array.length <= 1) {
     return array;
@@ -156,3 +182,5 @@ list1.insertLast(15);
 
 console.log(mSortList(list1));
 
+let bucketArr = [54, 25, 11, 2, 6, 8, 1, 50, 64, 32, 32, 32, 100];
+console.log(bucketSort(bucketArr, 1, 100));

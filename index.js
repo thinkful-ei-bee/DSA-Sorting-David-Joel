@@ -106,6 +106,15 @@ function mergeList(left, right) {
   return newList;
 }
 
+function shuffle(array) {
+  for (let i = 0; i < array.length; i++) {
+    let index1 = Math.floor(Math.random() * array.length);
+    let index2 = Math.floor(Math.random() * array.length);
+    swap(array, index1, index2);
+  }
+  return array;
+}
+
 function bucketSort(array, lowest, highest) {
   const bigArray = new Array(highest - lowest + 1);
   for (let i = 0; i < array.length; i++) {
@@ -184,3 +193,5 @@ console.log(mSortList(list1));
 
 let bucketArr = [54, 25, 11, 2, 6, 8, 1, 50, 64, 32, 32, 32, 100];
 console.log(bucketSort(bucketArr, 1, 100));
+
+console.log(shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]));

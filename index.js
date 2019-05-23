@@ -32,13 +32,8 @@ function swap(arr, i, j) {
 }
 
 
-
-
-
-
-
 function mSortList(list, count) {
-  if (!list.head || !list.next) {
+  if (!list || !list.head || !list.head.next) {
     return list;
   }
 
@@ -54,16 +49,61 @@ function mSortList(list, count) {
 
   const middle = Math.floor(count / 2);
   let left = listCut(list, 0, middle);
-  // {
-  //   list: list,
-  //   count: num
-  // }
+  
   let right = listCut(list, middle, count);
 
-  left = mSortList(left.list, left.count);
-  right = mSortList(right.list, right.count);
-
+  left = mSortList(left, middle);
+  right = mSortList(right, count - middle);
+  
   return mergeList(left, right, list);
+}
+
+function listCut(list, start, end) {
+  const newList = new LinkedList();
+  if (start >= end || !list.head) {
+    return newList;
+  }
+  
+  let node = list.head;
+
+  let counter = 0;
+  while (counter < end) {
+    if (counter >= start) {
+      newList.insertLast(node.value);
+    }
+    node = node.next;
+    counter++;
+  }
+
+  return newList;
+}
+
+function mergeList(left, right) {
+  let newList = new LinkedList();
+  let leftNode = left.head;
+  let rightNode = right.head;
+  
+  while (leftNode && rightNode) {
+    if (leftNode.value < rightNode.value) {
+      newList.insertLast(leftNode.value);
+      leftNode = leftNode.next;
+    } 
+    else {
+      newList.insertLast(rightNode.value);
+      rightNode = rightNode.next;
+    }
+  }
+
+  while (leftNode) {
+    newList.insertLast(leftNode.value);
+    leftNode = leftNode.next;
+  }
+
+  while (rightNode) {
+    newList.insertLast(rightNode.value);
+    rightNode = rightNode.next;
+  }
+  return newList;
 }
 
 function mSort(array) {
@@ -107,4 +147,12 @@ let arrNum = input.split(' ').map(i => Number(i));
 
 console.log(mSort(arrNum));
 
+let list1 = new LinkedList();
+list1.insertFirst(5);
+list1.insertLast(10);
+list1.insertLast(2);
+list1.insertLast(20);
+list1.insertLast(15);
+
+console.log(mSortList(list1));
 
